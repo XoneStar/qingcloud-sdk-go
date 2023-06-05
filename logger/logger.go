@@ -66,7 +66,7 @@ func CheckLevel(level string) error {
 
 // GetLevel get the log level string.
 func GetLevel() string {
-	return instance.Level.String()
+	return instance.GetLevel().String()
 }
 
 // SetLevel sets the log level. Valid levels are "debug", "info", "warn", "error", and "fatal".
@@ -75,7 +75,7 @@ func SetLevel(level string) {
 	if err != nil {
 		Fatal(fmt.Sprintf(`log level not valid: "%s"`, level))
 	}
-	instance.Level = lvl
+	instance.SetLevel(lvl)
 }
 
 // Debug logs a message with severity DEBUG.

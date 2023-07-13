@@ -21,6 +21,8 @@ import (
 	"fmt"
 	"io/ioutil"
 	"net/http"
+	"net/http/httputil"
+	"os"
 	"reflect"
 	"time"
 
@@ -194,6 +196,16 @@ func (r *Request) send() error {
 	}
 
 	r.HTTPResponse = response
+
+	debug := os.Getenv("QC_DEBUG")
+	if debug == "true" || debug == "1" {
+		var raw []byte
+		req, _ := httputil.DumpRequest(r.HTTPRequest, true)
+		raw = append(raw, req...)
+		resp, _ := httputil.DumpResponse(response, true)
+		raw = append(raw, resp...)
+		_ = os.WriteFile(fmt.Sprintf("%s.%d", r.Operation.APIName, time.Now().UnixNano()), raw, 0644)
+	}
 
 	return nil
 }

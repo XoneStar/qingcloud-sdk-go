@@ -1027,6 +1027,7 @@ type Instance struct {
 	Volumes          []*Volume   `json:"volumes" name:"volumes"`
 	VxNets           []*NICVxNet `json:"vxnets" name:"vxnets"`
 	ZoneID           *string     `json:"zone_id" name:"zone_id"`
+	HostMachine      *string     `json:"host_machine" name:"host_machine"`
 }
 
 func (v *Instance) Validate() error {

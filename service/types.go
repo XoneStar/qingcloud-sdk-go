@@ -2371,6 +2371,8 @@ type Router struct {
 	TransitionStatus *string  `json:"transition_status" name:"transition_status"`
 	VpcNetwork       *string  `json:"vpc_network" name:"vpc_network"`
 	VxNets           []*VxNet `json:"vxnets" name:"vxnets"`
+	BaseVxNets       *string  `json:"base_vxnet" name:"base_vxnet"`
+	VpcId            *string  `json:"vpc_id" name:"vpc_id"`
 }
 
 func (v *Router) Validate() error {

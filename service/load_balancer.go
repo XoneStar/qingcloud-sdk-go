@@ -1098,6 +1098,7 @@ type DescribeLoadBalancersOutput struct {
 	Action          *string         `json:"action" name:"action" location:"elements"`
 	LoadBalancerSet []*LoadBalancer `json:"loadbalancer_set" name:"loadbalancer_set" location:"elements"`
 	RetCode         *int            `json:"ret_code" name:"ret_code" location:"elements"`
+	TotalCount      *int            `json:"total_count" name:"total_count" location:"elements"`
 }
 
 // Documentation URL: https://docs.qingcloud.com/api/lb/describe_server_certificates.html

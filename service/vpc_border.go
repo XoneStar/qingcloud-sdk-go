@@ -40,20 +40,20 @@ type VpcBorder struct {
 }
 
 type DescribeVpcBorderOutput struct {
-	Action       *string     `json:"action"`
-	TotalCount   *int        `json:"total_count"`
-	VpcBorderSet []VpcBorder `json:"vpc_border_set"`
-	RetCode      *int        `json:"ret_code"`
-	Message      *string     `json:"message"`
+	Action       *string     `json:"action" name:"action"`
+	TotalCount   *int        `json:"total_count" name:"total_count"`
+	VpcBorderSet []VpcBorder `json:"vpc_border_set" name:"vpc_border_set"`
+	RetCode      *int        `json:"ret_code" name:"ret_code"`
+	Message      *string     `json:"message" name:"message"`
 }
 
 type DescribeVpcBorderInput struct {
 	// 边界路由器的类型, 1-vpc
-	BorderType *string `json:"border_type" name:"border_type" location:"border_type"`
-	Status     *string `json:"status" name:"status" location:"status"`
-	Offset     *int    `json:"offset" name:"offset" location:"offset"`
-	Limit      *int    `json:"limit" name:"limit" location:"limit"`
-	Verbose    *int    `json:"verbose" name:"verbose" location:"verbose"`
+	BorderType *string `json:"border_type" name:"border_type" location:"params"`
+	Status     *string `json:"status" name:"status" location:"params"`
+	Offset     *int    `json:"offset" name:"offset" location:"params"`
+	Limit      *int    `json:"limit" name:"limit" location:"params"`
+	Verbose    *int    `json:"verbose" name:"verbose" location:"params"`
 }
 
 func (d *DescribeVpcBorderInput) Validate() error {
@@ -86,10 +86,10 @@ func (v *VpcBorderService) DescribeVpcBorders(i *DescribeVpcBorderInput) (*Descr
 }
 
 type DescribeBorderVxnetInput struct {
-	Border *string `json:"border" name:"border" location:"border"`
-	Vxnet  *string `json:"vxnet" name:"vxnet" location:"vxnet"`
-	Offset *int    `json:"offset" name:"offset" location:"offset"`
-	Limit  *int    `json:"limit" name:"limit" location:"limit"`
+	Border *string `json:"border" name:"border" location:"params"`
+	Vxnet  *string `json:"vxnet" name:"vxnet" location:"params"`
+	Offset *int    `json:"offset" name:"offset" location:"params"`
+	Limit  *int    `json:"limit" name:"limit" location:"params"`
 }
 
 func (b *DescribeBorderVxnetInput) Validate() error {

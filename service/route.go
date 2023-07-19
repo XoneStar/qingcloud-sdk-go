@@ -29,7 +29,7 @@ type DescribeRoutesInput struct {
 	//2 - 路由器，nexthop取值应该是路由器的ID
 	//3 - IP地址，nexthop取值应该是IP地址
 	//4 - NAT网关的ID
-	NexthopType *string `json:"nexthop_type" name:"nexthop_type" location:"nexthop_type"`
+	NexthopType *string `json:"nexthop_type" name:"nexthop_type" location:"params"`
 }
 
 func (d *DescribeRoutesInput) Validate() error {

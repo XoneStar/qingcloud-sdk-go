@@ -39,24 +39,39 @@ type InstanceInfo struct {
 	EipNodeHealthStatus int    `json:"eip_node_health_status"`
 }
 
+type NfvVxNet struct {
+	IsDefaultSecurityGroup int    `json:"is_default_security_group"`
+	VxnetId                string `json:"vxnet_id"`
+	SecurityGroupName      string `json:"security_group_name"`
+	VxnetName              string `json:"vxnet_name"`
+	SecurityGroupId        string `json:"security_group_id"`
+	SecurityGroups         []struct {
+		IsDefault int    `json:"is_default"`
+		GroupId   string `json:"group_id"`
+		GroupName string `json:"group_name"`
+	} `json:"security_groups"`
+}
+
 type NfvSet struct {
-	Status           string        `json:"status"`
-	IsApplied        int           `json:"is_applied"`
-	Description      string        `json:"description"`
-	NfvName          string        `json:"nfv_name"`
-	NfvType          int           `json:"nfv_type"`
-	SubCode          int           `json:"sub_code"`
-	TransitionStatus string        `json:"transition_status"`
-	Cluster          []ClusterInfo `json:"cluster"`
-	RootUserID       string        `json:"root_user_id"`
-	CreateTime       time.Time     `json:"create_time"`
-	NfvID            string        `json:"nfv_id"`
-	NfvSpec          int           `json:"nfv_spec"`
-	Owner            string        `json:"owner"`
-	StatusTime       time.Time     `json:"status_time"`
-	NodeCount        int           `json:"node_count"`
-	ClusterMode      int           `json:"cluster_mode"`
-	ZoneID           string        `json:"zone_id"`
+	Status           string              `json:"status"`
+	IsApplied        int                 `json:"is_applied"`
+	Description      string              `json:"description"`
+	NfvName          string              `json:"nfv_name"`
+	NfvType          int                 `json:"nfv_type"`
+	SubCode          int                 `json:"sub_code"`
+	TransitionStatus string              `json:"transition_status"`
+	Cluster          []ClusterInfo       `json:"cluster"`
+	RootUserID       string              `json:"root_user_id"`
+	CreateTime       time.Time           `json:"create_time"`
+	NfvID            string              `json:"nfv_id"`
+	NfvSpec          int                 `json:"nfv_spec"`
+	Owner            string              `json:"owner"`
+	StatusTime       time.Time           `json:"status_time"`
+	NodeCount        int                 `json:"node_count"`
+	ClusterMode      int                 `json:"cluster_mode"`
+	ZoneID           string              `json:"zone_id"`
+	VxNets           map[string]NfvVxNet `json:"vxnets"`
+	PrivateIps       []string            `json:"private_ips"`
 }
 
 type ClusterInfo struct {
@@ -65,10 +80,12 @@ type ClusterInfo struct {
 }
 
 type DescribeNFVsInput struct {
-	Limit   int    `json:"limit" name:"limit"`
-	Offset  int    `json:"offset" name:"offset"`
-	Verbose int    `json:"verbose" name:"verbose"`
-	Zone    string `json:"zone" name:"zone"`
+	Limit   *int    `json:"limit" name:"limit" location:"params"`
+	Offset  *int    `json:"offset" name:"offset" location:"params"`
+	Verbose *int    `json:"verbose" name:"verbose" location:"params"`
+	Zone    *string `json:"zone" name:"zone" location:"params"`
+	// 状态：pending，active, stopped, suspended, deleted, ceased等
+	Status []*string `json:"status" name:"status" location:"params"`
 }
 
 func (d *DescribeNFVsInput) Validate() error {
@@ -102,7 +119,7 @@ func (e *NfvService) DescribeNFVs(i *DescribeNFVsInput) (*DescribeNFVsOutput, er
 
 type (
 	DescribeSnatRulesInput struct {
-		NatgwIds []string `json:"natgw_ids" name:"natgw_ids"`
+		NatgwIds []*string `json:"natgw_ids" name:"natgw_ids" location:"params"`
 	}
 	DescribeSnatRulesOutput struct {
 		Action     *string   `json:"action"`
@@ -159,7 +176,7 @@ func (e *NfvService) DescribeSnatRules(i *DescribeSnatRulesInput) (*DescribeSnat
 
 type (
 	DescribeDnatRulesInput struct {
-		NatgwIds []string `json:"natgw_ids" name:"natgw_ids"`
+		NatgwIds []*string `json:"natgw_ids" name:"natgw_ids" location:"params"`
 	}
 	DescribeDnatRulesOutput struct {
 		Action     *string   `json:"action"`

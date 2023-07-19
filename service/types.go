@@ -1287,6 +1287,16 @@ func (v *KeyPair) Validate() error {
 	return nil
 }
 
+type Vxnet struct {
+	VxnetType  int    `json:"vxnet_type" name:"vxnet_type"`
+	VxnetId    string `json:"vxnet_id" name:"vxnet_id"`
+	InstanceId string `json:"instance_id" name:"instance_id"`
+	VxnetName  string `json:"vxnet_name" name:"vxnet_name"`
+	PrivateIp  string `json:"private_ip" name:"private_ip"`
+	NicId      string `json:"nic_id" name:"nic_id"`
+	VipId      string `json:"vip_id" name:"vip_id"`
+}
+
 type LoadBalancer struct {
 	Cluster     []*EIP     `json:"cluster" name:"cluster"`
 	CreateTime  *time.Time `json:"create_time" name:"create_time" format:"ISO 8601"`
@@ -1309,6 +1319,7 @@ type LoadBalancer struct {
 	// TransitionStatus's available values: creating, starting, stopping, updating, suspending, resuming, deleting
 	TransitionStatus *string `json:"transition_status" name:"transition_status"`
 	VxNetID          *string `json:"vxnet_id" name:"vxnet_id"`
+	VxNet            *Vxnet  `json:"vxnet" name:"vxnet"`
 }
 
 func (v *LoadBalancer) Validate() error {
@@ -1439,6 +1450,8 @@ type LoadBalancerBackend struct {
 	ResourceID              *string    `json:"resource_id" name:"resource_id"`
 	Status                  *string    `json:"status" name:"status"`
 	Weight                  *int       `json:"weight" name:"weight"`
+	PrivateIp               *string    `json:"private_ip" name:"private_ip"`
+	NicId                   *string    `json:"nic_id" name:"nic_id"`
 }
 
 func (v *LoadBalancerBackend) Validate() error {

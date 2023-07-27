@@ -260,7 +260,7 @@ type DescribeVxNetsInput struct {
 	// Verbose's available values: 0, 1
 	Verbose *int `json:"verbose" name:"verbose" default:"0" location:"params"`
 	// VxNetType's available values: 0, 1, 2
-	VxNetType *int      `json:"vxnet_type" name:"vxnet_type" location:"params"`
+	VxNetType []*int    `json:"vxnet_type" name:"vxnet_type" location:"params"`
 	VxNets    []*string `json:"vxnets" name:"vxnets" location:"params"`
 	Zone      *string   `json:"zone" name:"zone" location:"params"`
 }
@@ -288,21 +288,24 @@ func (v *DescribeVxNetsInput) Validate() error {
 	}
 
 	if v.VxNetType != nil {
-		vxnetTypeValidValues := []string{"0", "1", "2"}
-		vxnetTypeParameterValue := fmt.Sprint(*v.VxNetType)
-
-		vxnetTypeIsValid := false
-		for _, value := range vxnetTypeValidValues {
-			if value == vxnetTypeParameterValue {
-				vxnetTypeIsValid = true
+		vxnetTypeIsValid := true
+		vxnetTypeValidValues := map[int]struct{}{0: {}, 1: {}, 2: {}}
+		for _, value := range v.VxNetType {
+			if value == nil {
+				vxnetTypeIsValid = false
+				break
+			}
+			if _, ok := vxnetTypeValidValues[*value]; !ok {
+				vxnetTypeIsValid = false
+				break
 			}
 		}
 
 		if !vxnetTypeIsValid {
 			return errors.ParameterValueNotAllowedError{
 				ParameterName:  "VxNetType",
-				ParameterValue: vxnetTypeParameterValue,
-				AllowedValues:  vxnetTypeValidValues,
+				ParameterValue: fmt.Sprintf("%v", v.VxNetType),
+				AllowedValues:  []string{"0", "1", "2"},
 			}
 		}
 	}

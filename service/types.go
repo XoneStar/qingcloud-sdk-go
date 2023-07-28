@@ -1853,12 +1853,12 @@ func (v *NICIP) Validate() error {
 }
 
 type NICVxNet struct {
-	NICID     *string `json:"nic_id" name:"nic_id"`
-	PrivateIP *string `json:"private_ip" name:"private_ip"`
-	Role      *int    `json:"role" name:"role"`
-	VxNetID   *string `json:"vxnet_id" name:"vxnet_id"`
-	VxNetName *string `json:"vxnet_name" name:"vxnet_name"`
-	VxNetType *int    `json:"vxnet_type" name:"vxnet_type"`
+	NICID     *string     `json:"nic_id" name:"nic_id"`
+	PrivateIP *string     `json:"private_ip" name:"private_ip"`
+	Role      *int        `json:"role" name:"role"`
+	VxNetID   *string     `json:"vxnet_id" name:"vxnet_id"`
+	VxNetName *string     `json:"vxnet_name" name:"vxnet_name"`
+	VxNetType interface{} `json:"vxnet_type" name:"vxnet_type"`
 }
 
 func (v *NICVxNet) Validate() error {

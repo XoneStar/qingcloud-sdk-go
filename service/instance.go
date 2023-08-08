@@ -999,10 +999,10 @@ type TerminateInstancesOutput struct {
 }
 
 type DescribeBossBotsInput struct {
-	Action *string `json:"action"`
-	Limit  *int    `json:"limit,omitempty"`
-	Offset *int    `json:"offset,omitempty"`
-	Zone   *string `json:"zone"`
+	Action *string `json:"action" name:"action" location:"params"`
+	Limit  *int    `json:"limit" name:"limit" default:"20" location:"params"`
+	Offset *int    `json:"offset" name:"offset" default:"0" location:"params"`
+	Zone   *string `json:"zone" name:"zone" location:"params"`
 }
 
 func (v *DescribeBossBotsInput) Validate() error {

@@ -106,40 +106,40 @@ type (
 	}
 	BotSet struct {
 		HostMachine     string             `json:"host_machine"`
-		MemoryUsed      int                `json:"memory_used"`
+		MemoryUsed      float64            `json:"memory_used"`
 		Dvrs            []Dvrs             `json:"dvrs"`
-		TotalMemory     int                `json:"total_memory"`
-		VcpuUsed        int                `json:"vcpu_used"`
+		TotalMemory     float64            `json:"total_memory"`
+		VcpuUsed        float64            `json:"vcpu_used"`
 		ContainerMode   string             `json:"container_mode"`
 		PlaceGroups     []PlaceGroups      `json:"place_groups"`
 		HyperNodeType   int                `json:"hyper_node_type"`
 		Conntrack       int                `json:"conntrack"`
-		FreeDisk        int                `json:"free_disk"`
-		MemoryMax       int                `json:"memory_max"`
+		FreeDisk        float64            `json:"free_disk"`
+		MemoryMax       float64            `json:"memory_max"`
 		MasterNetwork   string             `json:"master_network"`
 		HasBrks         int                `json:"has_brks"`
-		FreeVcpu        int                `json:"free_vcpu"`
-		UsedMemory      int                `json:"used_memory"`
+		FreeVcpu        float64            `json:"free_vcpu"`
+		UsedMemory      float64            `json:"used_memory"`
 		FreeGpu         map[string]float64 `json:"free_gpu"`
 		HyperNodeID     string             `json:"hyper_node_id"`
 		MirrorNode      string             `json:"mirror_node"`
 		CPUCores        int                `json:"cpu_cores"`
-		FreeMemory      int                `json:"free_memory"`
+		FreeMemory      float64            `json:"free_memory"`
 		VirtualDisk     float64            `json:"virtual_disk"`
-		CPUIdle         int                `json:"cpu_idle"`
+		CPUIdle         float64            `json:"cpu_idle"`
 		VipNetwork      string             `json:"vip_network"`
 		HyperNodeName   string             `json:"hyper_node_name"`
 		Provider        string             `json:"provider"`
 		ServiceType     string             `json:"service_type"`
 		StatusTime      time.Time          `json:"status_time"`
-		UsedVcpu        int                `json:"used_vcpu"`
+		UsedVcpu        float64            `json:"used_vcpu"`
 		CPUModels       int                `json:"cpu_models"`
 		Status          string             `json:"status"`
-		RealUsedMemory  int                `json:"real_used_memory"`
-		TotalVcpu       int                `json:"total_vcpu"`
+		RealUsedMemory  float64            `json:"real_used_memory"`
+		TotalVcpu       float64            `json:"total_vcpu"`
 		FlashNode       int                `json:"flash_node"`
-		VcpuMax         int                `json:"vcpu_max"`
-		UsedDisk        int                `json:"used_disk"`
+		VcpuMax         float64            `json:"vcpu_max"`
+		UsedDisk        float64            `json:"used_disk"`
 		Running         int                `json:"running"`
 		Remarks         string             `json:"remarks"`
 		Kernel          []int              `json:"kernel"`
@@ -151,14 +151,14 @@ type (
 		RegionID        string             `json:"region_id"`
 		RealFreeMemory  int                `json:"real_free_memory"`
 		UsedGpu         map[string]float64 `json:"used_gpu"`
-		RealTotalMemory int                `json:"real_total_memory"`
-		CPUWa           int                `json:"cpu_wa"`
-		CtnUtil         int                `json:"ctn_util"`
+		RealTotalMemory float64            `json:"real_total_memory"`
+		CPUWa           float64            `json:"cpu_wa"`
+		CtnUtil         float64            `json:"ctn_util"`
 		PlaceGroupIds   []string           `json:"place_group_ids"`
-		CPUSi           int                `json:"cpu_si"`
+		CPUSi           float64            `json:"cpu_si"`
 		Rack            string             `json:"rack"`
 		BotID           string             `json:"bot_id"`
-		TotalDisk       int                `json:"total_disk"`
+		TotalDisk       float64            `json:"total_disk"`
 		IP              string             `json:"ip"`
 		RealtimeStatus  int                `json:"realtime_status"`
 	}

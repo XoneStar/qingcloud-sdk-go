@@ -1041,51 +1041,51 @@ type DescribeBotsOutput struct {
 	TotalCount *int    `json:"total_count"`
 	BotSet     []struct {
 		HostMachine          string   `json:"host_machine"`
-		MemoryUsed           int      `json:"memory_used"`
+		MemoryUsed           float64  `json:"memory_used"`
 		AllQemuSystemVersion []string `json:"all_qemu_system_version"`
 		TotalMemory          float64  `json:"total_memory"`
-		VcpuUsed             int      `json:"vcpu_used"`
+		VcpuUsed             float64  `json:"vcpu_used"`
 		Conntrack            int      `json:"conntrack"`
 		VirtualDisk          float64  `json:"virtual_disk"`
 		PlaceGroups          []struct {
 			PlaceGroupId   string `json:"place_group_id"`
 			PlaceGroupName string `json:"place_group_name"`
 		} `json:"place_groups"`
-		TotalIbSriov           int                    `json:"total_ib_sriov"`
+		TotalIbSriov           float64                `json:"total_ib_sriov"`
 		HyperNodeType          int                    `json:"hyper_node_type"`
 		LocalImages            []string               `json:"local_images"`
-		FreeDisk               int                    `json:"free_disk"`
-		MemoryMax              int                    `json:"memory_max"`
+		FreeDisk               float64                `json:"free_disk"`
+		MemoryMax              float64                `json:"memory_max"`
 		MasterNetwork          string                 `json:"master_network"`
 		ContainerMode          string                 `json:"container_mode"`
 		HasBrks                int                    `json:"has_brks"`
-		CpuSi                  int                    `json:"cpu_si"`
+		CpuSi                  float64                `json:"cpu_si"`
 		FreeVcpu               float64                `json:"free_vcpu"`
-		UsedMemory             int                    `json:"used_memory"`
-		UsedIbSriov            int                    `json:"used_ib_sriov"`
+		UsedMemory             float64                `json:"used_memory"`
+		UsedIbSriov            float64                `json:"used_ib_sriov"`
 		HyperNodeId            string                 `json:"hyper_node_id"`
 		MirrorNode             string                 `json:"mirror_node"`
 		Architecture           string                 `json:"architecture"`
 		CpuCores               int                    `json:"cpu_cores"`
 		FreeMemory             float64                `json:"free_memory"`
 		VgpuInstanceClass      int                    `json:"vgpu_instance_class"`
-		CpuIdle                int                    `json:"cpu_idle"`
+		CpuIdle                float64                `json:"cpu_idle"`
 		CpuModels              int                    `json:"cpu_models"`
 		HyperNodeName          string                 `json:"hyper_node_name"`
 		Provider               string                 `json:"provider"`
 		ServiceType            string                 `json:"service_type"`
 		StatusTime             time.Time              `json:"status_time"`
-		UsedVcpu               int                    `json:"used_vcpu"`
+		UsedVcpu               float64                `json:"used_vcpu"`
 		VipNetwork             string                 `json:"vip_network"`
 		Status                 string                 `json:"status"`
-		RealUsedMemory         int                    `json:"real_used_memory"`
+		RealUsedMemory         float64                `json:"real_used_memory"`
 		TotalVcpu              float64                `json:"total_vcpu"`
-		FreeSriovNic           int                    `json:"free_sriov_nic"`
-		VcpuMax                int                    `json:"vcpu_max"`
-		UsedDisk               int                    `json:"used_disk"`
+		FreeSriovNic           float64                `json:"free_sriov_nic"`
+		VcpuMax                float64                `json:"vcpu_max"`
+		UsedDisk               float64                `json:"used_disk"`
 		Running                int                    `json:"running"`
 		QemuSystemX8664Version string                 `json:"qemu_system_x86_64_version"`
-		SsdLifeUsed            int                    `json:"ssd_life_used"`
+		SsdLifeUsed            float64                `json:"ssd_life_used"`
 		DiskReserveRate        float64                `json:"disk_reserve_rate"`
 		Remarks                string                 `json:"remarks"`
 		IbSriovType            int                    `json:"ib_sriov_type"`
@@ -1093,24 +1093,24 @@ type DescribeBotsOutput struct {
 		BotId                  string                 `json:"bot_id"`
 		SriovNicType           int                    `json:"sriov_nic_type"`
 		Box                    string                 `json:"box"`
-		TotalSriovNic          int                    `json:"total_sriov_nic"`
+		TotalSriovNic          float64                `json:"total_sriov_nic"`
 		CpuOversaleRate        float64                `json:"cpu_oversale_rate"`
-		FreeIbSriov            int                    `json:"free_ib_sriov"`
+		FreeIbSriov            float64                `json:"free_ib_sriov"`
 		TotalGpu               map[string]interface{} `json:"total_gpu"`
 		ZoneId                 string                 `json:"zone_id"`
-		UsedSriovNic           int                    `json:"used_sriov_nic"`
-		RealFreeMemory         int                    `json:"real_free_memory"`
+		UsedSriovNic           float64                `json:"used_sriov_nic"`
+		RealFreeMemory         float64                `json:"real_free_memory"`
 		UsedGpu                map[string]interface{} `json:"used_gpu"`
-		RealTotalMemory        int                    `json:"real_total_memory"`
-		CpuWa                  int                    `json:"cpu_wa"`
-		CtnUtil                int                    `json:"ctn_util"`
+		RealTotalMemory        float64                `json:"real_total_memory"`
+		CpuWa                  float64                `json:"cpu_wa"`
+		CtnUtil                float64                `json:"ctn_util"`
 		SecondMonitorNode      string                 `json:"second_monitor_node"`
 		FreeGpu                map[string]interface{} `json:"free_gpu"`
 		IntelIommuOn           bool                   `json:"intel_iommu_on"`
 		PlaceGroupIds          []string               `json:"place_group_ids"`
 		FlashNode              int                    `json:"flash_node"`
 		Rack                   string                 `json:"rack"`
-		StorageMax             int                    `json:"storage_max"`
+		StorageMax             float64                `json:"storage_max"`
 	} `json:"bot_set"`
 	RetCode *int `json:"ret_code"`
 }

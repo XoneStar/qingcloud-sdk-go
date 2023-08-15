@@ -677,6 +677,7 @@ type EIP struct {
 	Tags       []*Tag     `json:"tags" name:"tags"`
 	// TransitionStatus's available values: associating, dissociating, suspending, resuming, releasing
 	TransitionStatus *string `json:"transition_status" name:"transition_status"`
+	EipNetwork       *string `json:"eip_network" name:"eip_network"`
 }
 
 func (v *EIP) Validate() error {

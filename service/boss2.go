@@ -59,6 +59,31 @@ func (b *Boss2Service) DescribeBoss2Bots(i *DescribeBoss2BotsArgs) (*DescribeBos
 	return x, err
 }
 
+func (b *Boss2Service) DescribeInstances(i *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
+	if i == nil {
+		i = &DescribeInstancesInput{}
+	}
+	o := &data.Operation{
+		Config:        b.Config,
+		Properties:    b.Properties,
+		APIName:       "DescribeInstances",
+		RequestMethod: "POST",
+	}
+
+	x := &DescribeInstancesOutput{}
+	r, err := request.New(o, i.ToBoss2RequestParams(), x)
+	if err != nil {
+		return nil, err
+	}
+
+	err = r.Send()
+	if err != nil {
+		return nil, err
+	}
+
+	return x, err
+}
+
 type DescribeBoss2BotsInput struct {
 	Action *string `json:"action" name:"action" location:"action"`
 	Params *string `json:"params" name:"params" location:"params"`

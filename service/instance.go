@@ -17,6 +17,7 @@
 package service
 
 import (
+	"encoding/json"
 	"fmt"
 	"time"
 
@@ -226,6 +227,13 @@ func (v *DescribeInstancesInput) Validate() error {
 	}
 
 	return nil
+}
+
+func (v *DescribeInstancesInput) ToBoss2RequestParams() *DescribeBoss2BotsInput {
+	raw, _ := json.Marshal(v)
+	params := string(raw)
+	action := "DescribeInstances"
+	return &DescribeBoss2BotsInput{Action: &action, Params: &params}
 }
 
 type DescribeInstancesOutput struct {

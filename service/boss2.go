@@ -59,9 +59,27 @@ func (b *Boss2Service) DescribeBoss2Bots(i *DescribeBoss2BotsArgs) (*DescribeBos
 	return x, err
 }
 
+type DescribeInstancesInputArgs struct {
+	DescribeInstancesInput
+	Zone string `json:"zone"`
+}
+
+func (v *DescribeInstancesInputArgs) ToBoss2RequestParams() *DescribeBoss2BotsInput {
+	raw, _ := json.Marshal(v)
+	params := string(raw)
+	action := "DescribeInstances"
+	return &DescribeBoss2BotsInput{Action: &action, Params: &params}
+}
+
 func (b *Boss2Service) DescribeInstances(i *DescribeInstancesInput) (*DescribeInstancesOutput, error) {
 	if i == nil {
 		i = &DescribeInstancesInput{}
+	}
+	input := &DescribeInstancesInputArgs{
+		DescribeInstancesInput: *i,
+	}
+	if input.Zone == "" && b.Properties.Zone != nil {
+		input.Zone = *b.Properties.Zone
 	}
 	o := &data.Operation{
 		Config:        b.Config,
@@ -71,7 +89,7 @@ func (b *Boss2Service) DescribeInstances(i *DescribeInstancesInput) (*DescribeIn
 	}
 
 	x := &DescribeInstancesOutput{}
-	r, err := request.New(o, i.ToBoss2RequestParams(), x)
+	r, err := request.New(o, input.ToBoss2RequestParams(), x)
 	if err != nil {
 		return nil, err
 	}

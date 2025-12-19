@@ -145,6 +145,92 @@ func (b *Boss2Service) DescribeNics(i *DescribeNicsInput) (*DescribeNicsOutput, 
 	return x, err
 }
 
+type DescribeVxNetsInputArgs struct {
+	DescribeVxNetsInput
+	Zone string `json:"zone"`
+}
+
+func (v *DescribeVxNetsInputArgs) ToBoss2RequestParams() *DescribeBoss2BotsInput {
+	raw, _ := json.Marshal(v)
+	params := string(raw)
+	action := "DescribeVxNets"
+	return &DescribeBoss2BotsInput{Action: &action, Params: &params}
+}
+
+func (b *Boss2Service) DescribeVxNets(i *DescribeVxNetsInput) (*DescribeVxNetsOutput, error) {
+	if i == nil {
+		i = &DescribeVxNetsInput{}
+	}
+	input := &DescribeVxNetsInputArgs{
+		DescribeVxNetsInput: *i,
+	}
+	if input.Zone == "" && b.Properties.Zone != nil {
+		input.Zone = *b.Properties.Zone
+	}
+	o := &data.Operation{
+		Config:        b.Config,
+		Properties:    b.Properties,
+		APIName:       "DescribeVxNets",
+		RequestMethod: "POST",
+	}
+
+	x := &DescribeVxNetsOutput{}
+	r, err := request.New(o, input.ToBoss2RequestParams(), x)
+	if err != nil {
+		return nil, err
+	}
+
+	err = r.Send()
+	if err != nil {
+		return nil, err
+	}
+
+	return x, err
+}
+
+type DescribeRoutersInputArgs struct {
+	DescribeRoutersInput
+	Zone string `json:"zone"`
+}
+
+func (v *DescribeRoutersInputArgs) ToBoss2RequestParams() *DescribeBoss2BotsInput {
+	raw, _ := json.Marshal(v)
+	params := string(raw)
+	action := "DescribeRouters"
+	return &DescribeBoss2BotsInput{Action: &action, Params: &params}
+}
+
+func (b *Boss2Service) DescribeRouters(i *DescribeRoutersInput) (*DescribeRoutersOutput, error) {
+	if i == nil {
+		i = &DescribeRoutersInput{}
+	}
+	input := &DescribeRoutersInputArgs{
+		DescribeRoutersInput: *i,
+	}
+	if input.Zone == "" && b.Properties.Zone != nil {
+		input.Zone = *b.Properties.Zone
+	}
+	o := &data.Operation{
+		Config:        b.Config,
+		Properties:    b.Properties,
+		APIName:       "DescribeRouters",
+		RequestMethod: "POST",
+	}
+
+	x := &DescribeRoutersOutput{}
+	r, err := request.New(o, input.ToBoss2RequestParams(), x)
+	if err != nil {
+		return nil, err
+	}
+
+	err = r.Send()
+	if err != nil {
+		return nil, err
+	}
+
+	return x, err
+}
+
 type DescribeBoss2BotsInput struct {
 	Action *string `json:"action" name:"action" location:"action"`
 	Params *string `json:"params" name:"params" location:"params"`
